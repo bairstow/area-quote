@@ -5,7 +5,7 @@ const AppBase = props => (
   <div
     css={css`
       max-width: 768px;
-      max-height: 1024px;
+      margin: 0 auto;
     `}
     {...props}
   />

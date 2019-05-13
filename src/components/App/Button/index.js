@@ -24,7 +24,7 @@ const Button = props => (
         transform: scale(0.98);
       }
 
-      ${props.small && 'height: 48px;'}
+      ${props.small && 'height: 36px;'}
       ${props.small && 'min-width: 64px;'}
       ${props.small && 'padding: 0.4rem 0.8rem;'}
       ${props.small && 'border-radius: 8px;'}

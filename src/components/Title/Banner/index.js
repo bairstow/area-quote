@@ -1,6 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 
+import Logo from 'components/App/Logo';
+
 const BannerWrapper = props => (
   <div
     css={css`
@@ -22,35 +24,23 @@ const FlexRow = props => (
   />
 );
 
-const AppLogo = props => (
+const LogoWrapper = props => (
   <div
     css={css`
       margin-top: 0px;
       margin-left: 12px;
     `}
     {...props}
-  >
-    <svg
-      viewBox="0 0 64 64"
-      width="48"
-      height="48"
-      xmlns="http://www.w3.org/2000/svg"
-      stroke="#676767"
-      strokeWidth="2"
-      fill="transparent"
-    >
-      <circle cx="32" cy="32" r="32" />
-      <rect height="64" width="64" />
-      <rect height="64" width="32" />
-    </svg>
-  </div>
+  />
 );
 
 const Banner = props => (
   <BannerWrapper>
     <FlexRow>
       <div>AREA</div>
-      <AppLogo />
+      <LogoWrapper>
+        <Logo width="48" height="48" />
+      </LogoWrapper>
     </FlexRow>
     <div>QUOTE</div>
   </BannerWrapper>

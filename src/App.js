@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars, faPlusCircle, faMinusCircle } from '@fortawesome/pro-regular-svg-icons';
 
 import Title from 'containers/Title';
 import Summary from 'containers/Summary';
@@ -7,8 +9,11 @@ import Base from 'components/App/Base';
 
 import { mode } from 'constants/App';
 
+library.add(faBars, faPlusCircle, faMinusCircle);
+
 const initialState = {
   appMode: mode.SUMMARY,
+  //appMode: mode.TITLE,
   jobName: '',
   sectionData: [],
 };
