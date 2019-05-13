@@ -5,9 +5,12 @@ import ContentWrapper from 'components/Title/ContentWrapper';
 import Banner from 'components/Title/Banner';
 import Description from 'components/Title/Description';
 import Input from 'components/App/Input';
+import ButtonWrapper from 'components/Title/ButtonWrapper';
 import Button from 'components/App/Button';
 
 const Title = props => {
+  const updateJobNameValue = event => props.setJobName(event.target.value);
+
   return (
     <PageWrapper>
       <ContentWrapper>
@@ -16,8 +19,15 @@ const Title = props => {
           <div>QUOTE</div>
         </Banner>
         <Description>Track, edit, and share basic site measurements and costs...</Description>
-        <Input />
-        <Button onClick={() => console.log('button things')}>NEW</Button>
+        <Input 
+          inputId="jobName"
+          label="Job name (optional):"
+          autoFocus={true}
+          handleChange={updateJobNameValue}
+        />
+        <ButtonWrapper>
+          <Button onClick={() => console.log('button things')}>CREATE</Button>
+        </ButtonWrapper>
       </ContentWrapper>
     </PageWrapper>
   );

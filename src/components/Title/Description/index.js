@@ -1,12 +1,14 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 
 const Description = props => (
   <p
-    css={{
-      color: '#AAA',
-      textAlign: 'center',
-    }}
+    css={css`
+      color: #AAA;
+      font-size: 1em;
+      text-align: center;
+      margin-bottom: 48px;
+    `}
     {...props}
   />
 );
