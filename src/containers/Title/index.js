@@ -3,7 +3,7 @@ import React from 'react';
 import PageWrapper from 'components/App/PageWrapper';
 import ContentWrapper from 'components/Title/ContentWrapper';
 import Banner from 'components/Title/Banner';
-import Description from 'components/Title/Description';
+import Description from 'components/App/Description';
 import Input from 'components/App/Input';
 import ButtonWrapper from 'components/Title/ButtonWrapper';
 import Button from 'components/App/Button';

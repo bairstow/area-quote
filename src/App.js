@@ -20,6 +20,7 @@ const initialState = {
 
 function App() {
   const [atom, setAtom] = useState(initialState);
+  const { sectionData } = atom;
   const updateAppMode = updatedMode => setAtom(Object.assign({}, atom, { appMode: updatedMode }));
   const updateJobName = updatedJobName => setAtom(Object.assign({}, atom, { jobName: updatedJobName }));
   const checkMode = currentMode => atom.appMode === currentMode;
@@ -27,6 +28,7 @@ function App() {
   const stateUpdateProps = {
     updateAppMode,
     updateJobName,
+    sectionData,
   };
 
   return (

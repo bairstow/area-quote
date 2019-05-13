@@ -2,6 +2,7 @@ import React from 'react';
 
 import NavBar from 'containers/NavBar';
 import ActionBar from 'containers/ActionBar';
+import SectionList from 'containers/SectionList';
 
 import PageWrapper from 'components/App/PageWrapper';
 import ContentWrapper from 'components/Summary/ContentWrapper';
@@ -11,7 +12,7 @@ const Summary = props => {
     <PageWrapper>
       <ContentWrapper>
         <NavBar {...props} />
-        <div>summary page content</div>
+        <SectionList {...props} />
         <ActionBar {...props} />
       </ContentWrapper>
     </PageWrapper>

@@ -9,7 +9,7 @@ const Logo = props => {
       height={height}
       xmlns="http://www.w3.org/2000/svg"
       stroke="#676767"
-      strokeWidth="2"
+      strokeWidth="4"
       fill="transparent"
     >
       <circle cx="32" cy="32" r="30" />
