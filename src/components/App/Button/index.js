@@ -10,7 +10,7 @@ const Button = props => (
       border: none;
       border-radius: 16px;
       margin: 0;
-      padding: 1rem 2rem;
+      padding: 0.8rem 1.6rem;
       text-decoration: none;
       cursor: pointer;
       text-align: center;
@@ -23,6 +23,11 @@ const Button = props => (
       :active {
         transform: scale(0.98);
       }
+
+      ${props.small && 'height: 48px;'}
+      ${props.small && 'min-width: 64px;'}
+      ${props.small && 'padding: 0.4rem 0.8rem;'}
+      ${props.small && 'border-radius: 8px;'}
     `}
     {...props}
   />

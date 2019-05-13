@@ -7,12 +7,6 @@ const PageWrapper = props => (
       background-color: #FFF;
       width: 100vw;
       height: 100vh;
-      opacity: 0;
-      transition: opacity 250ms ease-in-out;
-
-      &.visible {
-        opacity: 1;
-      }
     `}
     {...props}
   />

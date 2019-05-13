@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PageWrapper from 'components/Title/PageWrapper';
+import PageWrapper from 'components/App/PageWrapper';
 import ContentWrapper from 'components/Title/ContentWrapper';
 import Banner from 'components/Title/Banner';
 import Description from 'components/Title/Description';
@@ -11,13 +11,11 @@ import Button from 'components/App/Button';
 import { mode } from 'constants/App';
 
 const Title = props => {
-  const updateJobNameValue = event => props.setJobName(event.target.value);
-  const navigateToSummaryMode = () => props.setAppMode(mode.SUMMARY);
-  const isTitleMode = props.appMode === mode.TITLE;
-  const pageClassNames = isTitleMode ? 'visible' : 'hidden';
+  const updateJobNameValue = event => props.updateJobName(event.target.value);
+  const navigateToSummaryMode = () => props.updateAppMode(mode.SUMMARY);
 
   return (
-    <PageWrapper className={pageClassNames}>
+    <PageWrapper>
       <ContentWrapper>
         <Banner />
         <Description>Track, edit, and share basic site measurements and costs...</Description>
