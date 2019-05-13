@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Header } from './components/Header';
-import './App.css';
+import React, { useState } from 'react';
+
+import TitleScreen from './containers/TitleScreen'
+
+import AppBase from './components/AppBase';
+
+import { appModes } from './constants/App';
 
 function App() {
+  const [appMode, setAppMode] = useState(appModes.TITLE);
+  const [jobName, setJobName] = useState('');
+  const childProps = {
+    appMode,
+    setAppMode,
+    jobName,
+    setJobName,
+  };
+
   return (
-    <div className="App">
-      <Header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </Header>
-    </div>
+    <AppBase>
+      <TitleScreen {...childProps} />
+    </AppBase>
   );
 }
 

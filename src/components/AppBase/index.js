@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-export const Header = props => (
+const AppBase = props => (
   <div
-    css={{
-      backgroundColor: 'green'
-    }}
+    css={{}}
     {...props}
   />
 );
+
+export default AppBase;
