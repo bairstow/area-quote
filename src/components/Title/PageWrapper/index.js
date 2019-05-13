@@ -1,13 +1,19 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 
 const PageWrapper = props => (
   <div
-    css={{
-      backgroundColor: '#FFF',
-      width: '100vw',
-      height: '100vh',
-    }}
+    css={css`
+      background-color: #FFF;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      transition: opacity 250ms ease-in-out;
+
+      &.visible {
+        opacity: 1;
+      }
+    `}
     {...props}
   />
 );

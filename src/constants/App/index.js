@@ -1,4 +1,4 @@
-export const appModes = {
+export const mode = {
   TITLE: 'title',
   SUMMARY: 'summary',
   DROPDOW: 'dropdown',

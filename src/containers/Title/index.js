@@ -8,16 +8,18 @@ import Input from 'components/App/Input';
 import ButtonWrapper from 'components/Title/ButtonWrapper';
 import Button from 'components/App/Button';
 
+import { mode } from 'constants/App';
+
 const Title = props => {
   const updateJobNameValue = event => props.setJobName(event.target.value);
+  const navigateToSummaryMode = () => props.setAppMode(mode.SUMMARY);
+  const isTitleMode = props.appMode === mode.TITLE;
+  const pageClassNames = isTitleMode ? 'visible' : 'hidden';
 
   return (
-    <PageWrapper>
+    <PageWrapper className={pageClassNames}>
       <ContentWrapper>
-        <Banner>
-          <div>AREA</div>
-          <div>QUOTE</div>
-        </Banner>
+        <Banner />
         <Description>Track, edit, and share basic site measurements and costs...</Description>
         <Input 
           inputId="jobName"
@@ -26,7 +28,7 @@ const Title = props => {
           handleChange={updateJobNameValue}
         />
         <ButtonWrapper>
-          <Button onClick={() => console.log('button things')}>CREATE</Button>
+          <Button onClick={navigateToSummaryMode}>CREATE</Button>
         </ButtonWrapper>
       </ContentWrapper>
     </PageWrapper>

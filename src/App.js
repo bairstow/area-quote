@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 
-import Title from './containers/Title'
+import Title from 'containers/Title'
 
-import Base from './components/App/Base';
+import Base from 'components/App/Base';
 
-import { appModes } from './constants/App';
+import { mode } from 'constants/App';
 
 function App() {
-  const [appMode, setAppMode] = useState(appModes.TITLE);
+  const [appMode, setAppMode] = useState(mode.TITLE);
   const [jobName, setJobName] = useState('');
-  const childProps = {
+  const titleProps = {
     appMode,
     setAppMode,
-    jobName,
     setJobName,
   };
 
   return (
     <Base>
-      <Title {...childProps} />
+      <Title {...titleProps} />
     </Base>
   );
 }
