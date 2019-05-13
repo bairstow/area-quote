@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 
-const TitleWrapper = props => (
+const PageWrapper = props => (
   <div
     css={{
-      backgroundColor: 'green',
+      backgroundColor: '#FFF',
       width: '100vw',
       height: '100vh',
     }}
@@ -12,5 +12,5 @@ const TitleWrapper = props => (
   />
 );
 
-export default TitleWrapper;
+export default PageWrapper;
 

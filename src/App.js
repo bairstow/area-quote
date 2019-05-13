@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import TitleScreen from './containers/TitleScreen'
+import Title from './containers/Title'
 
-import AppBase from './components/AppBase';
+import Base from './components/App/Base';
 
 import { appModes } from './constants/App';
 
@@ -17,9 +17,9 @@ function App() {
   };
 
   return (
-    <AppBase>
-      <TitleScreen {...childProps} />
-    </AppBase>
+    <Base>
+      <Title {...childProps} />
+    </Base>
   );
 }
 
