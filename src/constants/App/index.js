@@ -5,3 +5,9 @@ export const mode = {
   PULLUP: 'pullup',
   MODAL: 'modal',
 };
+
+export const modal = {
+  CONFIRM_NEW: 'confirmNew',
+  SEND_EMAIL: 'sendEmail',
+};
+
