@@ -26,7 +26,10 @@ function App() {
   const updateAppMode = updatedMode => setAtom(Object.assign({}, atom, { appMode: updatedMode }));
   const updateJobName = updatedJobName => setAtom(Object.assign({}, atom, { jobName: updatedJobName }));
   const handleConfirmNew = () => {
-    setAtom(Object.assign({}, initialState))
+    setAtom(Object.assign({}, initialState));
+  };
+  const handleCancel = () => {
+    setAtom(Object.assign({}, atom, { modalType: null }));
   };
   const navigateToTitle = () => {
     setAtom(Object.assign({}, atom, { modalType: modal.CONFIRM_NEW }));
@@ -42,7 +45,7 @@ function App() {
 
   return (
     <Base>
-      {modalType && <Modal modalType={modalType} handleConfirmNew={handleConfirmNew} />}
+      {modalType && <Modal modalType={modalType} handleConfirmNew={handleConfirmNew} handleCancel={handleCancel} />}
       {checkMode(mode.TITLE) && <Title {...stateUpdateProps} />}
       {checkMode(mode.SUMMARY) && <Summary {...stateUpdateProps} />}
     </Base>
