@@ -6,6 +6,7 @@ const ContentWrapper = props => (
     css={css`
       height: 100%;
       width: 100%;
+      ${props.contracted && 'display: none;'}
     `}
     {...props}
   />

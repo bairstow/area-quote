@@ -12,6 +12,7 @@ const ContentWrapper = props => (
       flex-direction: row;
       justify-content: space-around;
       align-items: center;
+      ${props.contracted && 'display: none;'}
     `}
     {...props}
   />

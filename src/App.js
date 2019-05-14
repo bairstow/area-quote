@@ -16,13 +16,14 @@ const initialState = {
   //appMode: mode.SUMMARY,
   appMode: mode.TITLE,
   modalType: null,
+  areSettingsVisible: null,
   jobName: '',
   sectionData: [],
 };
 
 function App() {
   const [atom, setAtom] = useState(initialState);
-  const { sectionData, modalType } = atom;
+  const { sectionData, modalType, areSettingsVisible } = atom;
   const updateAppMode = updatedMode => setAtom(Object.assign({}, atom, { appMode: updatedMode }));
   const updateJobName = updatedJobName => setAtom(Object.assign({}, atom, { jobName: updatedJobName }));
   const handleConfirmNew = () => {
@@ -34,12 +35,18 @@ function App() {
   const navigateToTitle = () => {
     setAtom(Object.assign({}, atom, { modalType: modal.CONFIRM_NEW }));
   };
+  const handleToggleSettings = () => {
+    const isVisible = atom.areSettingsVisible === 'true';
+    setAtom(Object.assign({}, atom, { areSettingsVisible: isVisible ? null : 'true' }));
+  };
   const checkMode = currentMode => atom.appMode === currentMode;
 
   const stateUpdateProps = {
     navigateToTitle,
     updateAppMode,
     updateJobName,
+    handleToggleSettings,
+    areSettingsVisible,
     sectionData,
   };
 
