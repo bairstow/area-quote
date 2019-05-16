@@ -17,7 +17,7 @@ const NavBar = props => {
   const settingsIconDefinition = checkMode(mode.DROPDOWN) ? ['far', 'times'] : ['far', 'bars'];
 
   return (
-    <ContentWrapper isExpanded={checkMode(mode.DROPDOWN)}>
+    <ContentWrapper isExpanded={checkMode(mode.DROPDOWN)} isContracted={checkMode(mode.PULLUP)}>
       <SpacedFlexRow height="64px">
         <Logo height="32" width="32" />
         <Button onClick={() => props.navigateToTitle()} small="true">

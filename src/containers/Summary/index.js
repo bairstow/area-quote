@@ -10,7 +10,7 @@ import PageWrapper from 'components/PageWrapper';
 import { generateUpdateAtom } from 'containers/App/utility';
 import { mode } from 'containers/Summary/constants';
 
-const initialState = { mode: mode.NORMAL };
+const initialState = { mode: mode.PULLUP };
 
 const Summary = props => {
   const [atom, updateAtom] = useState(initialState);

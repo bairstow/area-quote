@@ -2,13 +2,29 @@ import styled from '@emotion/styled';
 
 export const ContentWrapper = styled.div`
   width: 100%;
-  height: ${props => (props.isContracted ? '0' : '64px')};
   overflow: hidden;
   box-shadow: 0 -2px 4px lightgrey;
   margin: 0;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  height: 64px;
+  ${props => props.isContracted && 'height: 0;'}
+  ${props => props.isExpanded && 'height: 100%;'}
   transition: height 250ms ease-in-out;
+`;
+
+export const SectionHeader = styled.div`
+  width: 100%;
+  margin: 16px 32px;
+  color: #aaa;
+`;
+
+export const ShapeWrapper = styled.div`
+  width: 32px;
+  height: 32px;
+  padding: 16px;
+  border-radius: 16px;
+  border: ${props => (props.isSelected ? '1px solid #444' : 'none')};
 `;

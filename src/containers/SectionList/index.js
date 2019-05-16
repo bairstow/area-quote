@@ -11,7 +11,7 @@ const SectionList = props => {
   const checkMode = targetMode => summaryAtom.mode === targetMode;
   const hasSectionData = sectionData.length > 0;
   return (
-    <ContentWrapper isContracted={checkMode(mode.DROPDOWN)}>
+    <ContentWrapper isContracted={!checkMode(mode.NORMAL)}>
       <Header>SECTION DATA</Header>
       {!hasSectionData && <Description>No sections added yet</Description>}
     </ContentWrapper>

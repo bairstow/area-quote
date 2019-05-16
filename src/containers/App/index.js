@@ -12,8 +12,8 @@ import { mode, modal } from 'containers/App/constants';
 library.add(faBars, faTimes, faPlusCircle, faMinusCircle);
 
 const initialState = {
-  //appMode: mode.SUMMARY,
-  appMode: mode.TITLE,
+  appMode: mode.SUMMARY,
+  //appMode: mode.TITLE,
   modalType: null,
   areSettingsVisible: null,
   jobName: '',
