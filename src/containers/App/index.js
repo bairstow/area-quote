@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faPlusCircle, faMinusCircle } from '@fortawesome/pro-regular-svg-icons';
+import { faBars, faTimes, faPlusCircle, faMinusCircle } from '@fortawesome/pro-regular-svg-icons';
 
 import Title from 'containers/Title';
 import Summary from 'containers/Summary';
@@ -8,9 +8,9 @@ import Modal from 'containers/Modal';
 
 import Base from 'components/App/Base';
 
-import { mode, modal } from 'constants/App';
+import { mode, modal } from 'containers/App/constants';
 
-library.add(faBars, faPlusCircle, faMinusCircle);
+library.add(faBars, faTimes, faPlusCircle, faMinusCircle);
 
 const initialState = {
   //appMode: mode.SUMMARY,

@@ -1,18 +1,20 @@
 import React from 'react';
 
-import ContentWrapper from 'components/SectionList/ContentWrapper';
-import Header from 'components/SectionList/Header';
 import Description from 'components/App/Description';
+import { ContentWrapper, Header } from 'containers/SectionList/styles';
 
-const NavBar = props => {
-  const { sectionData, areSettingsVisible } = props;
+import { mode } from 'containers/Summary/constants';
+
+const SectionList = props => {
+  const { summaryAtom, sectionData } = props;
+  const checkMode = targetMode => summaryAtom.mode === targetMode;
   const hasSectionData = sectionData.length > 0;
   return (
-    <ContentWrapper contracted={areSettingsVisible}>
+    <ContentWrapper isContracted={checkMode(mode.DROPDOWN)}>
       <Header>SECTION DATA</Header>
       {!hasSectionData && <Description>No sections added yet</Description>}
     </ContentWrapper>
   );
 };
 
-export default NavBar;
+export default SectionList;

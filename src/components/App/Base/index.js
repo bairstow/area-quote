@@ -1,14 +1,9 @@
-/** @jsx jsx */
-import { css, jsx } from '@emotion/core'
+import styled from '@emotion/styled';
 
-const AppBase = props => (
-  <div
-    css={css`
-      max-width: 768px;
-      margin: 0 auto;
-    `}
-    {...props}
-  />
-);
+const AppBase = styled.div`
+  width: 100vw;
+  max-width: 768px;
+  margin: 0 auto;
+`;
 
 export default AppBase;

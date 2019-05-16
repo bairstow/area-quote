@@ -8,7 +8,7 @@ import Input from 'components/App/Input';
 import ButtonWrapper from 'components/Title/ButtonWrapper';
 import Button from 'components/App/Button';
 
-import { mode } from 'constants/App';
+import { mode } from 'containers/App/constants';
 
 const Title = props => {
   const updateJobNameValue = event => props.updateJobName(event.target.value);
@@ -19,12 +19,7 @@ const Title = props => {
       <ContentWrapper>
         <Banner />
         <Description>Track, edit, and share basic site measurements and costs...</Description>
-        <Input 
-          inputId="jobName"
-          label="Job name (optional):"
-          autoFocus={true}
-          handleChange={updateJobNameValue}
-        />
+        <Input inputId="jobName" label="Job name (optional):" autoFocus={true} handleChange={updateJobNameValue} />
         <ButtonWrapper>
           <Button onClick={navigateToSummaryMode}>CREATE</Button>
         </ButtonWrapper>
