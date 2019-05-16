@@ -17,7 +17,7 @@ const StyledLabel = styled.label`
 `;
 
 const InputBorder = styled.div`
-  width: 320px;
+  width: 304px;
   height: 40px;
   border: 2px solid #888;
   border-radius: 8px;

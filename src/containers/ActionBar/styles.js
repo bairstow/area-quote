@@ -4,7 +4,8 @@ export const ContentWrapper = styled.div`
   width: 100%;
   overflow: hidden;
   box-shadow: 0 -2px 4px lightgrey;
-  margin: 0;
+  box-sizing: border-box;
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -17,7 +18,7 @@ export const ContentWrapper = styled.div`
 
 export const SectionHeader = styled.div`
   width: 100%;
-  margin: 16px 32px;
+  margin: 16px 0;
   color: #aaa;
 `;
 

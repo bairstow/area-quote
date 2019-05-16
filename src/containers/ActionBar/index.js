@@ -5,6 +5,7 @@ import { ContentWrapper, SectionHeader, ShapeWrapper } from 'containers/ActionBa
 
 import Button from 'components/Button';
 import SpacedFlexRow from 'components/SpacedFlexRow';
+import Input from 'components/Input';
 
 import { generateUpdateAtom } from 'containers/App/utility';
 import { mode } from 'containers/Summary/constants';
@@ -69,9 +70,12 @@ const ActionBar = props => {
   };
 
   const renderInputForm = () => {
+    const handleChange = () => console.log('input changed');
     return (
       <Fragment>
         <SectionHeader>Input measurement:</SectionHeader>
+        <Input inputId="sectionHeight" label="Height:" handleChange={handleChange} />
+        <Input inputId="sectionWidth" label="Width:" handleChange={handleChange} />
       </Fragment>
     );
   };
