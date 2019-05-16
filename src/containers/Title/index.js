@@ -1,12 +1,12 @@
 import React from 'react';
 
-import PageWrapper from 'components/App/PageWrapper';
-import ContentWrapper from 'components/Title/ContentWrapper';
-import Banner from 'components/Title/Banner';
-import Description from 'components/App/Description';
-import Input from 'components/App/Input';
-import ButtonWrapper from 'components/Title/ButtonWrapper';
-import Button from 'components/App/Button';
+import { ContentWrapper, BannerWrapper, FlexRow, LogoWrapper, ButtonWrapper } from 'containers/Title/styles';
+
+import Button from 'components/Button';
+import Description from 'components/Description';
+import Input from 'components/Input';
+import Logo from 'components/Logo';
+import PageWrapper from 'components/PageWrapper';
 
 import { mode } from 'containers/App/constants';
 
@@ -17,7 +17,15 @@ const Title = props => {
   return (
     <PageWrapper>
       <ContentWrapper>
-        <Banner />
+        <BannerWrapper>
+          <FlexRow>
+            <div>AREA</div>
+            <LogoWrapper>
+              <Logo width="48" height="48" />
+            </LogoWrapper>
+          </FlexRow>
+          <div>QUOTE</div>
+        </BannerWrapper>
         <Description>Track, edit, and share basic site measurements and costs...</Description>
         <Input inputId="jobName" label="Job name (optional):" autoFocus={true} handleChange={updateJobNameValue} />
         <ButtonWrapper>

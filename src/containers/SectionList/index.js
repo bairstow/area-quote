@@ -1,7 +1,8 @@
 import React from 'react';
 
-import Description from 'components/App/Description';
 import { ContentWrapper, Header } from 'containers/SectionList/styles';
+
+import Description from 'components/Description';
 
 import { mode } from 'containers/Summary/constants';
 

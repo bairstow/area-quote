@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import NavBar from 'containers/NavBar';
 import ActionBar from 'containers/ActionBar';
 import SectionList from 'containers/SectionList';
-
-import PageWrapper from 'components/App/PageWrapper';
 import { ContentWrapper } from 'containers/Summary/styles';
+
+import PageWrapper from 'components/PageWrapper';
 
 import { generateUpdateAtom } from 'containers/App/utility';
 import { mode } from 'containers/Summary/constants';

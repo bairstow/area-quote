@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faBars, faTimes, faPlusCircle, faMinusCircle } from '@fortawesome/pro-regular-svg-icons';
 
+import { Base } from 'containers/App/styles';
 import Title from 'containers/Title';
 import Summary from 'containers/Summary';
 import Modal from 'containers/Modal';
-
-import Base from 'components/App/Base';
 
 import { mode, modal } from 'containers/App/constants';
 

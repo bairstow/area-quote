@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { BlackScreen, ContentWrapper, ModalWrapper } from 'containers/Modal/styles';
-import SpacedFlexRow from 'components/App/SpacedFlexRow';
-import Description from 'components/App/Description';
-import Button from 'components/App/Button';
+
+import Button from 'components/Button';
+import Description from 'components/Description';
+import SpacedFlexRow from 'components/SpacedFlexRow';
 
 import { modal } from 'containers/App/constants';
 

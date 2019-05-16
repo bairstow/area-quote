@@ -2,9 +2,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ContentWrapper } from 'containers/NavBar/styles';
-import SpacedFlexRow from 'components/App/SpacedFlexRow';
-import Logo from 'components/App/Logo';
-import Button from 'components/App/Button';
+
+import Button from 'components/Button';
+import SpacedFlexRow from 'components/SpacedFlexRow';
+import Logo from 'components/Logo';
 
 import { mode } from 'containers/Summary/constants';
 
