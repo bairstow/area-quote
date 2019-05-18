@@ -29,3 +29,7 @@ export const ShapeWrapper = styled.div`
   border-radius: 16px;
   border: ${props => (props.isSelected ? '1px solid #444' : 'none')};
 `;
+
+export const SectionWrapper = styled.div`
+  margin-bottom: 32px;
+`;

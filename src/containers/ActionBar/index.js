@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { ContentWrapper, SectionHeader, ShapeWrapper } from 'containers/ActionBar/styles';
+import { ContentWrapper, SectionHeader, ShapeWrapper, SectionWrapper } from 'containers/ActionBar/styles';
 
 import Button from 'components/Button';
 import SpacedFlexRow from 'components/SpacedFlexRow';
@@ -9,11 +9,52 @@ import Input from 'components/Input';
 
 import { generateUpdateAtom } from 'containers/App/utility';
 import { mode } from 'containers/Summary/constants';
-import { action, type } from 'containers/ActionBar/constants';
+import { action, type, measurement } from 'containers/ActionBar/constants';
+import { createBlankInputData } from 'containers/ActionBar/utility';
+
+const inputTypeDefinitions = {
+  [type.RECTANGULAR]: [
+    {
+      name: 'length',
+      measurement: measurement.LENGTH,
+    },
+    {
+      name: 'width',
+      measurement: measurement.LENGTH,
+    },
+  ],
+  [type.TRIANGULAR]: [
+    {
+      name: 'length',
+      measurement: measurement.LENGTH,
+    },
+    {
+      name: 'width',
+      measurement: measurement.LENGTH,
+    },
+  ],
+  [type.CIRCULAR]: [
+    {
+      name: 'radius',
+      measurement: measurement.LENGTH,
+    },
+    {
+      name: 'angle',
+      measurement: measurement.ANGLE,
+    },
+  ],
+  [type.CUSTOM]: [
+    {
+      name: 'custom',
+      measurement: measurement.AREA,
+    },
+  ],
+};
 
 const initialState = {
   action: action.ADD,
   type: type.RECTANGULAR,
+  typeData: createBlankInputData(inputTypeDefinitions[type.RECTANGULAR]),
 };
 
 const ActionBar = props => {
@@ -23,7 +64,9 @@ const ActionBar = props => {
   const checkAction = targetAction => atom.action === targetAction;
   const updateAction = targetAction => updateActionBarAtom({ action: targetAction });
   const checkType = targetType => atom.type === targetType;
-  const generateHandleUpdateType = targetType => () => updateActionBarAtom({ type: targetType });
+  const generateHandleUpdateType = targetType => () => {
+    updateActionBarAtom({ type: targetType, typeData: createBlankInputData(inputTypeDefinitions[targetType]) });
+  };
   const checkMode = targetMode => summaryAtom.mode === targetMode;
   const updateMode = targetMode => updateSummaryAtom({ mode: targetMode });
   const handleAddAction = () => {
@@ -41,7 +84,7 @@ const ActionBar = props => {
 
   const renderTypeSelector = () => {
     return (
-      <Fragment>
+      <SectionWrapper>
         <SectionHeader>Select type:</SectionHeader>
         <SpacedFlexRow>
           <ShapeWrapper isSelected={checkType(type.RECTANGULAR)} onClick={generateHandleUpdateType(type.RECTANGULAR)}>
@@ -65,18 +108,23 @@ const ActionBar = props => {
             </svg>
           </ShapeWrapper>
         </SpacedFlexRow>
-      </Fragment>
+      </SectionWrapper>
     );
   };
 
   const renderInputForm = () => {
-    const handleChange = () => console.log('input changed');
     return (
-      <Fragment>
+      <SectionWrapper>
         <SectionHeader>Input measurement:</SectionHeader>
-        <Input inputId="sectionHeight" label="Height:" handleChange={handleChange} />
-        <Input inputId="sectionWidth" label="Width:" handleChange={handleChange} />
-      </Fragment>
+        {inputTypeDefinitions[atom.type].map(inputTypeDefinition => {
+          const { name } = inputTypeDefinition;
+          const handleTypeDataUpdate = event => {
+            const typeData = Object.assign({}, atom.typeData, { [name]: event.target.value });
+            updateActionBarAtom({ typeData });
+          };
+          return <Input key={name} inputId={`section_${name}`} label={`${name}:`} handleChange={handleTypeDataUpdate} />;
+        })}
+      </SectionWrapper>
     );
   };
 
@@ -91,19 +139,20 @@ const ActionBar = props => {
 
   const renderAddAction = () => {
     return (
-      <Fragment>
+      <SectionWrapper>
         {renderTypeSelector()}
         {renderInputForm()}
         {renderConfirm(() => console.log('add'), 'ADD')}
-      </Fragment>
+      </SectionWrapper>
     );
   };
   const renderSubtractAction = () => {
     return (
-      <Fragment>
+      <SectionWrapper>
         {renderTypeSelector()}
+        {renderInputForm()}
         {renderConfirm(() => console.log('remove'), 'SUBTRACT')}
-      </Fragment>
+      </SectionWrapper>
     );
   };
 

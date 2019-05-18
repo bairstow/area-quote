@@ -14,6 +14,7 @@ const StyledLabel = styled.label`
   margin-left: 1em;
   padding: 0 0.8em;
   color: #666;
+  text-transform: capitalize;
 `;
 
 const InputBorder = styled.div`

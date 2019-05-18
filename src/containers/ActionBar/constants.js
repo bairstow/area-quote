@@ -9,3 +9,9 @@ export const type = {
   CIRCULAR: 'circular',
   CUSTOM: 'custom',
 };
+
+export const measurement = {
+  LENGTH: 'length',
+  ANGLE: 'angle',
+  AREA: 'area',
+};
