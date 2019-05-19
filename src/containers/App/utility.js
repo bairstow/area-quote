@@ -1,4 +1,4 @@
-import { type } from 'containers/ActionBar/constants';
+import { type, action } from 'containers/ActionBar/constants';
 import { units } from 'containers/App/constants';
 
 export const generateUpdateAtom = (atom, updateAtom) => updateData => updateAtom(Object.assign({}, atom, updateData));
@@ -49,7 +49,8 @@ export const calculateAreaValue = (sectionData, inputUnit) => {
 const generateAreaTotal = (sectionData, inputUnit) => {
   return sectionData.reduce((result, datum) => {
     const sectionAreaValue = calculateAreaValue(datum, inputUnit);
-    const updatedTotal = result + sectionAreaValue;
+    const actionAdjustmentFactor = datum.action === action.ADD ? 1 : -1;
+    const updatedTotal = result + actionAdjustmentFactor * sectionAreaValue;
     return updatedTotal;
   }, 0);
 };

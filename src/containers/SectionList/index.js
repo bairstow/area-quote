@@ -9,6 +9,7 @@ import {
   ItemSummaryWrapper,
   ItemType,
   InputSummaryWrapper,
+  InputMarker,
   ItemTotal,
   Spacer,
 } from 'containers/SectionList/styles';
@@ -17,6 +18,7 @@ import Description from 'components/Description';
 import Button from 'components/Button';
 
 import { mode } from 'containers/Summary/constants';
+import { action } from 'containers/ActionBar/constants';
 import { calculateAreaValue } from 'containers/App/utility';
 
 const SectionList = props => {
@@ -31,15 +33,14 @@ const SectionList = props => {
 
   const renderItemDescription = datum => {
     const { type, data } = datum;
-    const typeSummary = type.slice(0, 4);
-    console.log({ data });
+    const typeSummary = type.slice(0, 3);
     return (
       <ItemSummaryWrapper>
-        <ItemType>{typeSummary}</ItemType>
+        <ItemType>{typeSummary} -</ItemType>
         {data &&
           Object.keys(data).map(inputKey => (
             <InputSummaryWrapper key={inputKey}>
-              <div>{inputKey[0]}</div>
+              <InputMarker>{inputKey[0]}</InputMarker>
               <div>{data[inputKey]}</div>
             </InputSummaryWrapper>
           ))}
@@ -51,6 +52,7 @@ const SectionList = props => {
     return sectionData.map((datum, listIndex) => {
       const { type } = datum;
       const key = `${listIndex}-${type}`;
+      const signValue = datum.action === action.ADD ? '+' : '-';
       const areaValue = calculateAreaValue(datum, inputUnit);
       const displayTotal = areaValue.toFixed(2);
       const handleDeleteSection = generateHandleDeleteSection(listIndex);
@@ -64,7 +66,10 @@ const SectionList = props => {
               EDIT
             </Button>
           </DescriptionWrapper>
-          <ItemTotal>{displayTotal} m2</ItemTotal>
+          <ItemTotal action={datum.action}>
+            {signValue}
+            {displayTotal} m<sup>2</sup>
+          </ItemTotal>
         </ItemWrapper>
       );
     });

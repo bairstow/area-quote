@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { action } from 'containers/ActionBar/constants';
+
 export const ContentWrapper = styled.div`
   width: 100%;
   height: ${props => (props.isContracted ? '0' : '100%')};
@@ -13,7 +15,7 @@ export const Header = styled.div`
   margin: 24px auto;
   text-align: center;
   font-size: 24px;
-  border-bottom: 1px solid #AAA;
+  border-bottom: 1px solid #aaa;
 `;
 
 export const ItemWrapper = styled.div`
@@ -37,7 +39,8 @@ export const ItemSummaryWrapper = styled.div`
 export const ItemType = styled.div`
   margin-left: 8px;
   text-align: left;
-  text-transform: capitalize;
+  text-transform: uppercase;
+  color: #444;
 `;
 
 export const InputSummaryWrapper = styled.div`
@@ -46,10 +49,16 @@ export const InputSummaryWrapper = styled.div`
   flex-direction: row;
 `;
 
+export const InputMarker = styled.div`
+  color: #AAA;
+  padding: 0 2px;
+`;
+
 export const ItemTotal = styled.div`
   text-align: left;
   font-size: 18px;
-  margin: 4px 48px;
+  margin: 0 48px;
+  color: ${props => (props.action === action.ADD ? 'green' : 'red')};
 `;
 
 export const Spacer = styled.div`

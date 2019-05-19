@@ -83,12 +83,13 @@ const ActionBar = props => {
     updateSummaryAtom({ mode: mode.NORMAL });
     updateActionBarAtom(generateInitialState());
   };
-  const handleAddConfirm = () => {
+  const handleConfirm = () => {
     const { sectionData } = appAtom;
     const updatedSectionData = sectionData.concat([
       {
         type: atom.type,
         data: atom.typeData,
+        action: atom.action,
       },
     ]);
     updateAppAtom({ sectionData: updatedSectionData });
@@ -155,7 +156,7 @@ const ActionBar = props => {
       <SectionWrapper>
         {renderTypeSelector()}
         {renderInputForm()}
-        {renderConfirm(handleAddConfirm, 'ADD')}
+        {renderConfirm(handleConfirm, 'ADD')}
       </SectionWrapper>
     );
   };
@@ -164,7 +165,7 @@ const ActionBar = props => {
       <SectionWrapper>
         {renderTypeSelector()}
         {renderInputForm()}
-        {renderConfirm(() => console.log('remove'), 'SUBTRACT')}
+        {renderConfirm(handleConfirm, 'SUBTRACT')}
       </SectionWrapper>
     );
   };
@@ -177,7 +178,7 @@ const ActionBar = props => {
         <FontAwesomeIcon onClick={handleAddAction} icon={['far', 'plus-circle']} size="lg" />
         <FontAwesomeIcon onClick={handleSubtractAction} icon={['far', 'minus-circle']} size="lg" />
         <div>
-          {areaTotal} m2 | ${costTotal}
+          {areaTotal} m<sup>2</sup> | ${costTotal}
         </div>
       </SpacedFlexRow>
     </ContentWrapper>

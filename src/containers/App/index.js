@@ -26,6 +26,7 @@ const initialState = {
         length: '1200',
         width: '1200',
       },
+      action: 'subtract',
     },
     {
       type: 'rectangular',
@@ -33,6 +34,7 @@ const initialState = {
         length: '3400',
         width: '3400',
       },
+      action: 'add',
     },
   ],
 };
