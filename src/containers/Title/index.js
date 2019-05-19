@@ -32,6 +32,7 @@ const Title = props => {
         <ButtonWrapper>
           <Button onClick={navigateToSummaryMode}>CREATE</Button>
         </ButtonWrapper>
+        <div>v0.1 - (c) Josh Bairstow. 2019</div>
       </ContentWrapper>
     </PageWrapper>
   );
