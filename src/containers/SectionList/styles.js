@@ -15,3 +15,32 @@ export const Header = styled.div`
   font-size: 24px;
   border-bottom: 1px solid #AAA;
 `;
+
+export const ItemWrapper = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 32px;
+`;
+
+export const DescriptionWrapper = styled.div`
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const ItemDescription = styled.div`
+  margin-left: 8px;
+  text-align: left;
+  text-transform: capitalize;
+`;
+
+export const ItemTotal = styled.div`
+  text-align: left;
+  font-size: 18px;
+  margin: 4px 48px;
+`;
+
+export const Spacer = styled.div`
+  flex: auto;
+`;

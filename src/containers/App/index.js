@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faBars, faTimes, faPlusCircle, faMinusCircle } from '@fortawesome/pro-regular-svg-icons';
+import { faBars, faTimes, faPlusCircle, faMinusCircle, faTimesCircle } from '@fortawesome/pro-regular-svg-icons';
 
 import { Base } from 'containers/App/styles';
 import Title from 'containers/Title';
@@ -10,14 +10,29 @@ import Modal from 'containers/Modal';
 import { mode } from 'containers/App/constants';
 import { generateUpdateAtom } from 'containers/App/utility';
 
-library.add(faBars, faTimes, faPlusCircle, faMinusCircle);
+library.add(faBars, faTimes, faPlusCircle, faMinusCircle, faTimesCircle);
 
 const initialState = {
   appMode: mode.SUMMARY,
   //appMode: mode.TITLE,
   modalType: null,
   jobName: '',
-  sectionData: [],
+  sectionData: [
+    {
+      type: 'rectangular',
+      data: {
+        length: '12',
+        width: '12',
+      },
+    },
+    {
+      type: 'rectangular',
+      data: {
+        length: '34',
+        width: '34',
+      },
+    },
+  ],
 };
 
 function App() {
