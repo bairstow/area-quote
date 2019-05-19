@@ -51,35 +51,46 @@ const inputTypeDefinitions = {
   ],
 };
 
-const initialState = {
-  action: action.ADD,
+const generateInitialState = () => ({
+  action: null,
   type: type.RECTANGULAR,
   typeData: createBlankInputData(inputTypeDefinitions[type.RECTANGULAR]),
-};
+});
 
 const ActionBar = props => {
-  const { summaryAtom, updateSummaryAtom } = props;
-  const [atom, updateAtom] = useState(initialState);
+  const { appAtom, updateAppAtom, summaryAtom, updateSummaryAtom } = props;
+  const [atom, updateAtom] = useState(generateInitialState());
   const updateActionBarAtom = generateUpdateAtom(atom, updateAtom);
   const checkAction = targetAction => atom.action === targetAction;
-  const updateAction = targetAction => updateActionBarAtom({ action: targetAction });
   const checkType = targetType => atom.type === targetType;
+  const checkMode = targetMode => summaryAtom.mode === targetMode;
+
   const generateHandleUpdateType = targetType => () => {
     updateActionBarAtom({ type: targetType, typeData: createBlankInputData(inputTypeDefinitions[targetType]) });
   };
-  const checkMode = targetMode => summaryAtom.mode === targetMode;
-  const updateMode = targetMode => updateSummaryAtom({ mode: targetMode });
+
   const handleAddAction = () => {
-    updateMode(mode.PULLUP);
-    updateAction(action.ADD);
+    updateSummaryAtom({ mode: mode.PULLUP });
+    updateActionBarAtom({ action: action.ADD });
   };
   const handleSubtractAction = () => {
-    updateMode(mode.PULLUP);
-    updateAction(action.SUBTRACT);
+    updateSummaryAtom({ mode: mode.PULLUP });
+    updateActionBarAtom({ action: action.SUBTRACT });
   };
   const handleCancelAction = () => {
-    updateMode(mode.NORMAL);
-    updateActionBarAtom(initialState);
+    updateSummaryAtom({ mode: mode.NORMAL });
+    updateActionBarAtom(generateInitialState());
+  };
+  const handleAddConfirm = () => {
+    const { sectionData } = appAtom;
+    const updatedSectionData = sectionData.concat([
+      {
+        type: atom.type,
+        data: atom.typeData,
+      },
+    ]);
+    updateAppAtom({ sectionData: updatedSectionData });
+    handleCancelAction();
   };
 
   const renderTypeSelector = () => {
@@ -142,7 +153,7 @@ const ActionBar = props => {
       <SectionWrapper>
         {renderTypeSelector()}
         {renderInputForm()}
-        {renderConfirm(() => console.log('add'), 'ADD')}
+        {renderConfirm(handleAddConfirm, 'ADD')}
       </SectionWrapper>
     );
   };

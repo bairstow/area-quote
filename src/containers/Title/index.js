@@ -11,8 +11,9 @@ import PageWrapper from 'components/PageWrapper';
 import { mode } from 'containers/App/constants';
 
 const Title = props => {
-  const updateJobNameValue = event => props.updateJobName(event.target.value);
-  const navigateToSummaryMode = () => props.updateAppMode(mode.SUMMARY);
+  const { updateAppAtom } = props;
+  const updateJobNameValue = event => updateAppAtom({ jobName: event.target.value });
+  const navigateToSummaryMode = () => updateAppAtom({ appMode: mode.SUMMARY });
 
   return (
     <PageWrapper>

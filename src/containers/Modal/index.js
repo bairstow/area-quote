@@ -9,14 +9,18 @@ import SpacedFlexRow from 'components/SpacedFlexRow';
 import { modal } from 'containers/App/constants';
 
 const Modal = props => {
-  const { modalType, handleConfirmNew, handleCancel } = props;
+  const { appAtom, updateAppAtom, resetAppAtom } = props;
+  const { modalType } = appAtom;
   const checkType = currentType => modalType === currentType;
+  const handleCancel = () => {
+    updateAppAtom({ modalType: null });
+  };
 
   const renderConfirm = () => (
     <div>
       <Description>Starting a new job will clear all existing job data.</Description>
       <SpacedFlexRow>
-        <Button onClick={handleConfirmNew}>CONFIRM</Button>
+        <Button onClick={resetAppAtom}>CONFIRM</Button>
         <Button onClick={handleCancel}>CANCEL</Button>
       </SpacedFlexRow>
     </div>

@@ -7,9 +7,9 @@ import Description from 'components/Description';
 import { mode } from 'containers/Summary/constants';
 
 const SectionList = props => {
-  const { summaryAtom, sectionData } = props;
+  const { summaryAtom, appAtom } = props;
   const checkMode = targetMode => summaryAtom.mode === targetMode;
-  const hasSectionData = sectionData.length > 0;
+  const hasSectionData = appAtom.sectionData.length > 0;
   return (
     <ContentWrapper isContracted={!checkMode(mode.NORMAL)}>
       <Header>SECTION DATA</Header>
