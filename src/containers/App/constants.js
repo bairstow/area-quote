@@ -11,3 +11,8 @@ export const modal = {
   SEND_EMAIL: 'sendEmail',
 };
 
+export const units = {
+  MM: 'mm',
+  CM: 'cm',
+  M: 'm',
+};

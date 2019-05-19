@@ -11,6 +11,7 @@ import { generateUpdateAtom } from 'containers/App/utility';
 import { mode } from 'containers/Summary/constants';
 import { action, type, measurement } from 'containers/ActionBar/constants';
 import { createBlankInputData } from 'containers/ActionBar/utility';
+import { generateSummaryValues } from 'containers/App/utility';
 
 const inputTypeDefinitions = {
   [type.RECTANGULAR]: [
@@ -64,6 +65,7 @@ const ActionBar = props => {
   const checkAction = targetAction => atom.action === targetAction;
   const checkType = targetType => atom.type === targetType;
   const checkMode = targetMode => summaryAtom.mode === targetMode;
+  const { areaTotal, costTotal } = generateSummaryValues(appAtom);
 
   const generateHandleUpdateType = targetType => () => {
     updateActionBarAtom({ type: targetType, typeData: createBlankInputData(inputTypeDefinitions[targetType]) });
@@ -174,7 +176,9 @@ const ActionBar = props => {
       <SpacedFlexRow height="64px">
         <FontAwesomeIcon onClick={handleAddAction} icon={['far', 'plus-circle']} size="lg" />
         <FontAwesomeIcon onClick={handleSubtractAction} icon={['far', 'minus-circle']} size="lg" />
-        <div>123 m2| $456.78</div>
+        <div>
+          {areaTotal} m2 | ${costTotal}
+        </div>
       </SpacedFlexRow>
     </ContentWrapper>
   );

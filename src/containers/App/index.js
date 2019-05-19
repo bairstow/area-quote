@@ -7,7 +7,7 @@ import Title from 'containers/Title';
 import Summary from 'containers/Summary';
 import Modal from 'containers/Modal';
 
-import { mode } from 'containers/App/constants';
+import { mode, units } from 'containers/App/constants';
 import { generateUpdateAtom } from 'containers/App/utility';
 
 library.add(faBars, faTimes, faPlusCircle, faMinusCircle, faTimesCircle);
@@ -17,19 +17,21 @@ const initialState = {
   //appMode: mode.TITLE,
   modalType: null,
   jobName: '',
+  inputUnit: units.MM,
+  costPerUnitArea: 12.5,
   sectionData: [
     {
       type: 'rectangular',
       data: {
-        length: '12',
-        width: '12',
+        length: '1200',
+        width: '1200',
       },
     },
     {
       type: 'rectangular',
       data: {
-        length: '34',
-        width: '34',
+        length: '3400',
+        width: '3400',
       },
     },
   ],
