@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 const SpacedFlexRow = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: ${props => (props.justifyContent ? props.justifyContent : 'space-around')};
   align-items: center;
   height: ${props => (props.height ? props.height : '')};
 `;

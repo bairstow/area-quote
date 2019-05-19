@@ -1,12 +1,12 @@
 import { type, action } from 'containers/ActionBar/constants';
-import { units } from 'containers/App/constants';
+import { unit } from 'containers/App/constants';
 
 export const generateUpdateAtom = (atom, updateAtom) => updateData => updateAtom(Object.assign({}, atom, updateData));
 
 const inputUnitConversionFactor = {
-  [units.MM]: 0.001,
-  [units.CM]: 0.01,
-  [units.M]: 1,
+  [unit.MM]: 0.001,
+  [unit.CM]: 0.01,
+  [unit.M]: 1,
 };
 const convertToDisplayUnit = (input, inputUnit) => input * inputUnitConversionFactor[inputUnit];
 const parseValue = input => (input ? Number.parseFloat(input) : 0);
