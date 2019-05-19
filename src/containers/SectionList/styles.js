@@ -29,10 +29,21 @@ export const DescriptionWrapper = styled.div`
   align-items: center;
 `;
 
-export const ItemDescription = styled.div`
+export const ItemSummaryWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ItemType = styled.div`
   margin-left: 8px;
   text-align: left;
   text-transform: capitalize;
+`;
+
+export const InputSummaryWrapper = styled.div`
+  margin-left: 8px;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const ItemTotal = styled.div`

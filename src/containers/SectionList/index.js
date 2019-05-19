@@ -1,16 +1,27 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { ContentWrapper, Header, ItemWrapper, DescriptionWrapper, ItemDescription, ItemTotal, Spacer } from 'containers/SectionList/styles';
+import {
+  ContentWrapper,
+  Header,
+  ItemWrapper,
+  DescriptionWrapper,
+  ItemSummaryWrapper,
+  ItemType,
+  InputSummaryWrapper,
+  ItemTotal,
+  Spacer,
+} from 'containers/SectionList/styles';
 
 import Description from 'components/Description';
 import Button from 'components/Button';
 
 import { mode } from 'containers/Summary/constants';
+import { calculateAreaValue } from 'containers/App/utility';
 
 const SectionList = props => {
   const { appAtom, updateAppAtom, summaryAtom } = props;
-  const { sectionData } = appAtom;
+  const { inputUnit, sectionData } = appAtom;
   const checkMode = targetMode => summaryAtom.mode === targetMode;
   const hasSectionData = appAtom.sectionData.length > 0;
   const generateHandleDeleteSection = itemIndex => () => {
@@ -18,26 +29,42 @@ const SectionList = props => {
     updateAppAtom({ sectionData: updatedSectionData });
   };
 
+  const renderItemDescription = datum => {
+    const { type, data } = datum;
+    const typeSummary = type.slice(0, 4);
+    console.log({ data });
+    return (
+      <ItemSummaryWrapper>
+        <ItemType>{typeSummary}</ItemType>
+        {data &&
+          Object.keys(data).map(inputKey => (
+            <InputSummaryWrapper key={inputKey}>
+              <div>{inputKey[0]}</div>
+              <div>{data[inputKey]}</div>
+            </InputSummaryWrapper>
+          ))}
+      </ItemSummaryWrapper>
+    );
+  };
+
   const renderSectionData = () => {
     return sectionData.map((datum, listIndex) => {
-      const { type, data } = datum;
-      const { length, width } = data;
+      const { type } = datum;
       const key = `${listIndex}-${type}`;
-      const displayTotal = Number.parseFloat(length) * Number.parseFloat(width);
+      const areaValue = calculateAreaValue(datum, inputUnit);
+      const displayTotal = areaValue.toFixed(2);
       const handleDeleteSection = generateHandleDeleteSection(listIndex);
       return (
         <ItemWrapper key={key}>
           <DescriptionWrapper>
             <FontAwesomeIcon onClick={handleDeleteSection} icon={['far', 'times-circle']} size="lg" />
-            <ItemDescription>
-              {type.slice(0, 4)} - ( l{length}, w{width} )
-            </ItemDescription>
+            {renderItemDescription(datum)}
             <Spacer />
             <Button onClick={() => console.log('edit')} small="true">
               EDIT
             </Button>
           </DescriptionWrapper>
-          <ItemTotal>{displayTotal.toFixed(2)} m2</ItemTotal>
+          <ItemTotal>{displayTotal} m2</ItemTotal>
         </ItemWrapper>
       );
     });
