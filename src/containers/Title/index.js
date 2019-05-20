@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ContentWrapper, BannerWrapper, FlexRow, LogoWrapper, ButtonWrapper } from 'containers/Title/styles';
+import { ContentWrapper, BannerWrapper, FlexRow, LogoWrapper, ButtonWrapper, InfoSection } from 'containers/Title/styles';
 
 import Button from 'components/Button';
 import Description from 'components/Description';
@@ -32,7 +32,7 @@ const Title = props => {
         <ButtonWrapper>
           <Button onClick={navigateToSummaryMode}>CREATE</Button>
         </ButtonWrapper>
-        <div>v0.1 - (c) Josh Bairstow. 2019</div>
+        <InfoSection>v0.1 &nbsp;&nbsp;&nbsp;&nbsp;&copy; 2019. Josh Bairstow</InfoSection>
       </ContentWrapper>
     </PageWrapper>
   );

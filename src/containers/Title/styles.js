@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ContentWrapper = styled.div`
-  width: 325px;
+  width: 304px;
   height: 100%;
   margin: 0 auto;
   display: flex;
@@ -29,4 +29,11 @@ export const ButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+`;
+
+export const InfoSection = styled.div`
+  width: 100%;
+  text-align: center;
+  margin-top: 48px;
+  color: #AAA;
 `;
