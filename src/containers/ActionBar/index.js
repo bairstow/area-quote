@@ -52,15 +52,15 @@ const inputTypeDefinitions = {
   ],
 };
 
-const generateInitialState = () => ({
+const initialState = {
   action: null,
   type: type.RECTANGULAR,
   typeData: createBlankInputData(inputTypeDefinitions[type.RECTANGULAR]),
-});
+};
 
 const ActionBar = props => {
   const { appAtom, updateAppAtom, summaryAtom, updateSummaryAtom } = props;
-  const [atom, updateAtom] = useState(generateInitialState());
+  const [atom, updateAtom] = useState(initialState);
   const updateActionBarAtom = generateUpdateAtom(atom, updateAtom);
   const checkAction = targetAction => atom.action === targetAction;
   const checkType = targetType => atom.type === targetType;
@@ -81,7 +81,7 @@ const ActionBar = props => {
   };
   const handleCancelAction = () => {
     updateSummaryAtom({ mode: mode.NORMAL });
-    updateActionBarAtom(generateInitialState());
+    updateActionBarAtom(initialState);
   };
   const handleConfirm = () => {
     const { sectionData } = appAtom;

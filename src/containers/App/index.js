@@ -16,6 +16,7 @@ const initialState = {
   appMode: mode.SUMMARY,
   //appMode: mode.TITLE,
   modalType: null,
+  modalData: null,
   jobName: '',
   inputUnit: unit.MM,
   costPerUnitArea: 12.5,

@@ -8,7 +8,9 @@ export const mode = {
 
 export const modal = {
   CONFIRM_NEW: 'confirmNew',
+  CONFIRM_DELETE: 'confirmDelete',
   SEND_EMAIL: 'sendEmail',
+  EDIT_SECTION: 'editSection',
 };
 
 export const unit = {

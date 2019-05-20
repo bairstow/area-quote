@@ -19,6 +19,7 @@ import Button from 'components/Button';
 
 import { mode } from 'containers/Summary/constants';
 import { action } from 'containers/ActionBar/constants';
+import { modal } from 'containers/App/constants';
 import { calculateAreaValue } from 'containers/App/utility';
 
 const SectionList = props => {
@@ -26,10 +27,8 @@ const SectionList = props => {
   const { inputUnit, sectionData } = appAtom;
   const checkMode = targetMode => summaryAtom.mode === targetMode;
   const hasSectionData = appAtom.sectionData.length > 0;
-  const generateHandleDeleteSection = itemIndex => () => {
-    const updatedSectionData = sectionData.slice(0, itemIndex).concat(sectionData.slice(itemIndex + 1));
-    updateAppAtom({ sectionData: updatedSectionData });
-  };
+  const generateHandleDeleteSection = itemIndex => () => updateAppAtom({ modalType: modal.CONFIRM_DELETE, modalData: { itemIndex } });
+  const generateHandleEditSection = itemIndex => () => updateAppAtom({ modalType: modal.EDIT_SECTION, modalData: { itemIndex } });
 
   const renderItemDescription = datum => {
     const { type, data } = datum;
@@ -56,13 +55,14 @@ const SectionList = props => {
       const areaValue = calculateAreaValue(datum, inputUnit);
       const displayTotal = areaValue.toFixed(2);
       const handleDeleteSection = generateHandleDeleteSection(listIndex);
+      const handleEditSection = generateHandleEditSection(listIndex);
       return (
         <ItemWrapper key={key}>
           <DescriptionWrapper>
             <FontAwesomeIcon onClick={handleDeleteSection} icon={['far', 'times-circle']} size="lg" />
             {renderItemDescription(datum)}
             <Spacer />
-            <Button onClick={() => console.log('edit')} small="true">
+            <Button onClick={handleEditSection} small="true">
               EDIT
             </Button>
           </DescriptionWrapper>

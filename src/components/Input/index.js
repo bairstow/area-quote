@@ -18,14 +18,14 @@ const StyledLabel = styled.label`
 `;
 
 const InputBorder = styled.div`
-  width: 304px;
+  width: ${props => (props.isModal ? '272px' : '304px')};
   height: 40px;
   border: 2px solid #888;
   border-radius: 8px;
 `;
 
 const StyledInput = styled.input`
-  width: 280px;
+  width: ${props => (props.isModal ? '248px' : '280px')};
   height: 1.6em;
   line-height: 1.6em;
   margin-top: 8px;
@@ -37,12 +37,13 @@ const StyledInput = styled.input`
 `;
 
 const Input = props => {
-  const { inputId, label, autoFocus, handleChange } = props;
+  const { inputId, label, autoFocus, handleChange, value, type } = props;
+  const isModal = type === 'modal';
   return (
     <InputWrapper>
       <StyledLabel htmlFor={inputId}>{label}</StyledLabel>
-      <InputBorder>
-        <StyledInput id={inputId} autoFocus={autoFocus} onChange={handleChange} />
+      <InputBorder isModal={isModal}>
+        <StyledInput id={inputId} autoFocus={autoFocus} onChange={handleChange} value={value} isModal={isModal} />
       </InputBorder>
     </InputWrapper>
   );
