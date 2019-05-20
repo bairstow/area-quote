@@ -18,7 +18,7 @@ const initialState = {
   modalData: null,
   jobName: '',
   inputUnit: unit.MM,
-  costPerUnitArea: 1.0,
+  costPerUnitArea: '1.0',
   sectionData: [],
 };
 

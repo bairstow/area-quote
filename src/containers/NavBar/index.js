@@ -52,7 +52,7 @@ const NavBar = props => {
       </SectionWrapper>
       <SectionWrapper>
         <SectionHeader>Cost setting:</SectionHeader>
-        <Input inputId="costPerUnitArea" label="$ per m2:" handleChange={handleCostPerUnitAreaUpdate} />
+        <Input inputId="costPerUnitArea" label="$ per m2:" value={appAtom.costPerUnitArea} handleChange={handleCostPerUnitAreaUpdate} />
       </SectionWrapper>
     </ContentWrapper>
   );
