@@ -13,31 +13,13 @@ import { generateUpdateAtom } from 'containers/App/utility';
 library.add(faBars, faTimes, faPlusCircle, faMinusCircle, faTimesCircle);
 
 const initialState = {
-  appMode: mode.SUMMARY,
-  //appMode: mode.TITLE,
+  appMode: mode.TITLE,
   modalType: null,
   modalData: null,
   jobName: '',
   inputUnit: unit.MM,
-  costPerUnitArea: 12.5,
-  sectionData: [
-    {
-      type: 'rectangular',
-      data: {
-        length: '1200',
-        width: '1200',
-      },
-      action: 'subtract',
-    },
-    {
-      type: 'rectangular',
-      data: {
-        length: '3400',
-        width: '3400',
-      },
-      action: 'add',
-    },
-  ],
+  costPerUnitArea: 1.0,
+  sectionData: [],
 };
 
 function App() {

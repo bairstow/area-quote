@@ -71,3 +71,35 @@ export const generateSummaryValues = appAtom => {
     costTotal: costTotal.toFixed(2),
   };
 };
+
+export const generateEmailSubject = ({ jobName }) => {
+  const appendedText = jobName ? ` - ${jobName}` : '';
+  return `Area Quote${appendedText}`;
+};
+
+const generateSectionDataLine = (section, inputUnit) => {
+  const { type, data, action } = section;
+  const formattedType = type.toUpperCase();
+  const formattedAction = action.toUpperCase();
+  const formattedData = Object.keys(data)
+    .map(measurement => {
+      return `${measurement.toUpperCase()}: ${data[measurement]}`;
+    })
+    .join(', ');
+  const areaValue = calculateAreaValue(section, inputUnit);
+  const formattedLine = `${formattedType} (${formattedAction}) - ${formattedData} - ${areaValue.toFixed(2)}m2`;
+  return formattedLine;
+};
+
+const generateSummaryLine = (summaryValues, costPerUnitArea) => {
+  const { areaTotal, costTotal } = summaryValues;
+  return `TOTAL AREA: ${areaTotal}m2 @ $${costPerUnitArea}/m2\r\nTOTAL COST: $${costTotal}`;
+};
+
+export const generateEmailBody = atom => {
+  const { sectionData, inputUnit, costPerUnitArea } = atom;
+  const bodySectionData = sectionData.map(section => generateSectionDataLine(section, inputUnit)).join('\r\n');
+  const summaryValues = generateSummaryValues(atom);
+  const summaryLine = generateSummaryLine(summaryValues, costPerUnitArea);
+  return `${bodySectionData}\r\n\r\n${summaryLine}`;
+};

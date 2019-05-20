@@ -19,6 +19,7 @@ const NavBar = props => {
   const handleToggleSettings = () => (checkMode(mode.NORMAL) ? updateMode(mode.DROPDOWN) : updateMode(mode.NORMAL));
   const settingsIconDefinition = checkMode(mode.DROPDOWN) ? ['far', 'times'] : ['far', 'bars'];
   const handleNewJobAction = () => updateAppAtom({ modalType: modal.CONFIRM_NEW });
+  const handleSendAction = () => updateAppAtom({ modalType: modal.SEND_EMAIL });
   const checkUnit = targetUnit => appAtom.inputUnit === targetUnit;
   const generateHandleUpdateUnit = targetUnit => () => updateAppAtom({ inputUnit: targetUnit });
   const handleCostPerUnitAreaUpdate = event => updateAppAtom({ costPerUnitArea: event.target.value });
@@ -30,7 +31,7 @@ const NavBar = props => {
         <Button onClick={handleNewJobAction} small="true">
           NEW
         </Button>
-        <Button onClick={() => console.log('send button')} small="true">
+        <Button onClick={handleSendAction} small="true">
           SEND
         </Button>
         <FontAwesomeIcon onClick={handleToggleSettings} icon={settingsIconDefinition} size="lg" />

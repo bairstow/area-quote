@@ -8,10 +8,11 @@ import SpacedFlexRow from 'components/SpacedFlexRow';
 import Input from 'components/Input';
 
 import { modal } from 'containers/App/constants';
-import { generateUpdateAtom } from 'containers/App/utility';
+import { generateUpdateAtom, generateEmailSubject, generateEmailBody } from 'containers/App/utility';
 
 const initialState = {
   editData: null,
+  email: '',
 };
 
 const Modal = props => {
@@ -57,7 +58,28 @@ const Modal = props => {
       </div>
     );
   };
-  const renderSendEmail = null;
+  const renderSendEmail = () => {
+    const { email } = atom;
+    const handleSendEmail = () => {
+      const emailSubject = generateEmailSubject(appAtom);
+      const emailBody = generateEmailBody(appAtom);
+      window.open(`mailto:${email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`);
+      handleCancel();
+    };
+    const handleChange = event => {
+      updateModalAtom({ email: event.target.value });
+    };
+    return (
+      <div>
+        <Description>Send current job data via email.</Description>
+        <Input inputId="email-input" label="email:" value={email} handleChange={handleChange} autoFocus={true} type="modal" />
+        <SpacedFlexRow>
+          <Button onClick={handleSendEmail}>SEND</Button>
+          <Button onClick={handleCancel}>CANCEL</Button>
+        </SpacedFlexRow>
+      </div>
+    );
+  };
   const renderEditSection = () => {
     const { editData } = atom;
     if (!editData) return;
@@ -73,10 +95,6 @@ const Modal = props => {
       const previousSectionData = sectionData.slice(0, itemIndex);
       const trailingSectionData = sectionData.slice(itemIndex + 1);
       const updatedSectionData = previousSectionData.concat([editData]).concat(trailingSectionData);
-      //const updatedSectionData = sectionData
-      //.slice(0, itemIndex)
-      //.concat([editData])
-      //.concat(sectionData.slice(itemIndex + 1));
       updateAppAtom({ sectionData: updatedSectionData, modalType: null, modalData: null });
     };
     return (
