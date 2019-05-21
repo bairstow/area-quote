@@ -24,6 +24,9 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
+      - run:
+          name: Setup font awesome registry auth token
+          command: echo "@fortawesome:registry=https://npm.fontawesome.com/\n//npm.fontawesome.com/:_authToken=$FONT_AWESOME_TOKEN" >> .npmrc
       - run: yarn install
       - save_cache:
           paths:
