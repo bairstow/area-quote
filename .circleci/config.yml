@@ -1,0 +1,70 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+
+orbs:
+  aws-ecr: circleci/aws-ecr@4.0.1
+
+executors:
+  build_env:
+    docker:
+      - image: circleci/node:10.15.3
+    working_directory: ~/repo
+
+jobs:
+  compile_app:
+    executor: build_env
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      # run tests!
+      # - run: yarn test
+      # compile build files
+      - run: yarn build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - build/*
+  trigger_build:
+    executor: build_env
+    steps:
+      - run:
+          name: Trigger the Build Job
+          command: |
+            printf "Triggering an $TRIGGER_PROJECT build on the $TRIGGER_BRANCH branch\n\n"
+            printf "https://circleci.com/api/v1/project/$ORGANISATION/$TRIGGER_PROJECT/tree/$TRIGGER_BRANCH\n\n"
+
+            BUILD_INFO=$(curl -X POST -H -d "{}"\
+                "https://circleci.com/api/v1/project/$ORGANISATION/$TRIGGER_PROJECT/tree/$TRIGGER_BRANCH?circle-token=$CIRCLE_TOKEN")
+
+            printf "\n\nBuild triggered\n\n"
+            printf "Follow the progress of the build on \nhttps://circleci.com/gh/$ORGANISATION/$TRIGGER_PROJECT/tree/$TRIGGER_BRANCH"
+
+workflows:
+  build-and-push:
+    jobs:
+      - compile_app
+      - aws-ecr/build_and_push_image:
+          requires:
+            - compile_app
+          account-url: AWS_ACCOUNT_URL
+          repo: "${AWS_RESOURCE_NAME_PREFIX}"
+          region: AWS_DEFAULT_REGION
+          attach-workspace: true
+          workspace-root: ~/build
+      - trigger_build:
+          requires:
+            - aws-ecr/build_and_push_image
+
